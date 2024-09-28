@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <title>Home</title>
+</head>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const enquiryForm = document.getElementById("enquiry-form");
+
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const nic = document.getElementById("nic").value;
+      const eventDuration = document.getElementById("event-duration").value;
+      const eventDate = document.getElementById("event-date").value;
+      const services = document.getElementById("services").value;
+      const style = document.getElementById("style").value;
+      const venueRestrictions = document.getElementById("venue-restrictions").value;
+      const locations = document.getElementById("locations").value;
+      const imageDelivery = document.getElementById("image-delivery").value;
+      const budget = document.getElementById("budget").value;
+      const referral = document.getElementById("referral").value;
+      const contactMethod = document.getElementById("contact-method").value;
+
+      // Send form data to PHP script using AJAX
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", "./SQL/enquiry.php", true);
+      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            // Request succeeded
+            const response = JSON.parse(xhr.responseText);
+            if (response.success) {
+              // Show success message
+              alert("Successfully booked.");
+            } else {
+              // Show error message
+              alert("Error: " + response.message);
+            }
+          } else {
+            // Request failed
+            alert("Error: " + xhr.statusText);
+          }
+        }
+      };
+      xhr.send(
+        "name=" + encodeURIComponent(name) +
+        "&email=" + encodeURIComponent(email) +
+        "&phone=" + encodeURIComponent(phone) +
+        "&nic=" + encodeURIComponent(nic) +
+        "&event-duration=" + encodeURIComponent(eventDuration) +
+        "&event-date=" + encodeURIComponent(eventDate) +
+        "&services=" + encodeURIComponent(services) +
+        "&style=" + encodeURIComponent(style) +
+        "&venue-restrictions=" + encodeURIComponent(venueRestrictions) +
+        "&locations=" + encodeURIComponent(locations) +
+        "&image-delivery=" + encodeURIComponent(imageDelivery) +
+        "&budget=" + encodeURIComponent(budget) +
+        "&referral=" + encodeURIComponent(referral) +
+        "&contact-method=" + encodeURIComponent(contactMethod)
+      );
+    }
+
+    function sendConfirmationEmail() {
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", "./SQL/enquiry.php", true);
+      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          const response = JSON.parse(xhr.responseText);
+          if (response.emailSent) {
+            alert("Email sent successfully.");
+          } else {
+            alert("Error sending email: " + response.emailError);
+          }
+        }
+      };
+      xhr.send();
+    }
+
+    enquiryForm.addEventListener("submit", function(event) {
+      handleFormSubmit(event);
+      sendConfirmationEmail();
+    });
+  });
+</script>
+
+
+<body class="enqbody">
+  <nav class="navbar5">
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="enquiry.html">Enquiry</a></li>
+      <li class="log"><a href="login.html">Log in</a></li>
+      <li class="sign"><a href="signup.html">Sign up</a></li>
+    </ul>
+  </nav>
+
+  <div class="container7">
+    <h2>Enquiry Form</h2>
+    <form id="enquiry-form" action="./SQL/enquiry.php" method="POST" class="horizontal-form">
+      <div class="form-row">
+        <div class="form-column">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-column">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-column">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="form-column">
+          <label for="nic">NIC Number</label>
+          <input type="number" id="nic" name="nic" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-column">
+          <label for="event-duration">Event Duration</label>
+          <input type="time" id="event-duration" name="event-duration" required>
+        </div>
+        <div class="form-column">
+          <label for="event-date">Event Date</label>
+          <input type="date" id="event-date" name="event-date" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-column">
+          <label for="services">Services Needed</label>
+          <select id="services" name="services" required>
+            <option value="" disabled selected>Select</option>
+            <option value="candid">Candid Photography</option>
+            <option value="posed">Posed Shots</option>
+            <option value="aerial">Aerial Photography</option>
+            <option value="photobooth">Photo Booth</option>
+          </select>
+        </div>
+        <div class="form-column">
+          <label for="style">Photography Style</label>
+          <select id="style" name="style" required>
+            <option value="" disabled selected>Select</option>
+            <option value="traditional">Traditional</option>
+            <option value="documentary">Documentary</option>
+            <option value="fine-art">Fine Art</option>
+            <option value="contemporary">Contemporary</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-column">
+          <label for="venue-restrictions">Venue Restrictions</label>
+          <textarea id="venue-restrictions" name="venue-restrictions" rows="4"></textarea>
+        </div>
+        <div class="form-column">
+          <label for="locations">Additional Locations</label>
+          <textarea id="locations" name="locations" rows="4"></textarea>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-column">
+          <label for="image-delivery">Image Delivery</label>
+          <select id="image-delivery" name="image-delivery" required>
+            <option value="" disabled selected>Select</option>
+            <option value="digital">Digital Download</option>
+            <option value="usb">USB Drive</option>
+            <option value="prints">Prints</option>
+          </select>
+        </div>
+        <div class="form-column">
+          <label for="budget">Budget Range</label>
+          <input type="text" id="budget" name="budget" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-column">
+          <label for="referral">Referrals</label>
+          <input type="text" id="referral" name="referral">
+        </div>
+        <div class="form-column">
+          <label for="contact-method">Preferred Contact Method</label>
+          <select id="contact-method" name="contact-method" required>
+            <option value="" disabled selected>Select</option>
+            <option value="email">Email</option>
+            <option value="phone">Phone Call</option>
+            <option value="in-person">In-person Meeting</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-column full-width">
+          <input id="button" type="submit" value="Submit">
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <footer class="ft3">
+    <div class="footer-container2">
+      <div class="footer-content2">
+        <div class="texts">
+          <h3>Lismore's Lens</h3>
+
+          <p>Copyright © 2023 Designed by Azgoen. All rights reserved.</p>
+        </div>
+      </div>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-pinterest"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

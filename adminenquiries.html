@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="admin.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet" />
+    <title>Home</title>
+</head>
+
+<body class="enqbody">
+    <nav class="navbar5">
+        <ul>
+            <li><a href="adminpricing.html">Pricing</a></li>
+            <li><a href="admingallery.html">Gallery</a></li>
+            <li><a href="adminenquiries.html">Enquiries</a></li>
+            <li class="log"><a href="home.html">Client view</a></li>
+        </ul>
+    </nav>
+
+    <div class="enqhead">
+        <h1>Enquiry Forms</h1>
+    </div>
+
+    <div id="enquiries-container">
+
+    </div>
+    <div id="enquiries-container"></div>
+
+    <script>
+        const enquiriesContainer = document.getElementById("enquiries-container");
+    
+        function fetchEnquiries() {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", "SQL/showenquiry.php", true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const enquiries = JSON.parse(xhr.responseText);
+                    if (enquiries.length > 0) {
+                        enquiriesContainer.innerHTML = "";
+                        enquiries.forEach((enquiry, index) => {
+                            const enquiryDiv = document.createElement("div");
+                            enquiryDiv.classList.add("enquiry");
+    
+                            const enquiryContent = `
+                                <h2>Enquiry #${index + 1}</h2>
+                                <button class="delete-btn" data-enquiry-id="${enquiry.id}">Delete</button>
+                                <p><strong>Name:</strong> ${enquiry.name}</p>
+                                <p><strong>Email:</strong> ${enquiry.email}</p>
+                                <p><strong>Phone:</strong> ${enquiry.phone}</p>
+                                <p><strong>NIC Number:</strong> ${enquiry.nic}</p>
+                                <p><strong>Event Duration:</strong> ${enquiry.event_duration}</p>
+                                <p><strong>Event Date:</strong> ${enquiry.event_date}</p>
+                                <p><strong>Services Needed:</strong> ${enquiry.services}</p>
+                                <p><strong>Photography Style:</strong> ${enquiry.style}</p>
+                                <p><strong>Venue Restrictions:</strong> ${enquiry.venue_restrictions}</p>
+                                <p><strong>Additional Locations:</strong> ${enquiry.locations}</p>
+                                <p><strong>Image Delivery:</strong> ${enquiry.image_delivery}</p>
+                                <p><strong>Budget Range:</strong> ${enquiry.budget}</p>
+                                <p><strong>Referrals:</strong> ${enquiry.referral}</p>
+                                <p><strong>Preferred Contact Method:</strong> ${enquiry.contact_method}</p>
+                            `;
+    
+                            enquiryDiv.innerHTML = enquiryContent;
+                            enquiriesContainer.appendChild(enquiryDiv);
+    
+                            const hr = document.createElement("hr");
+                            enquiriesContainer.appendChild(hr);
+                        });
+                    } else {
+                        enquiriesContainer.innerHTML = "<p>No enquiries found.</p>";
+                    }
+                }
+            };
+    
+            xhr.send();
+        }
+    
+        fetchEnquiries();
+    
+        enquiriesContainer.addEventListener("click", function (event) {
+            if (event.target.classList.contains("delete-btn")) {
+                const enquiryId = event.target.getAttribute("data-enquiry-id");
+                const xhrDelete = new XMLHttpRequest();
+                xhrDelete.open("POST", "SQL/deleteenquiry.php", true);
+                xhrDelete.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhrDelete.onreadystatechange = function () {
+                    if (xhrDelete.readyState === 4 && xhrDelete.status === 200) {
+                        const response = JSON.parse(xhrDelete.responseText);
+                        if (response.success) {
+                            fetchEnquiries(); // Refresh the list of enquiries after deletion
+                        } else {
+                            console.error("Error deleting enquiry.");
+                        }
+                    }
+                };
+                xhrDelete.send(`enquiryId=${enquiryId}`);
+            }
+        });
+    </script>
+    
+    
+    
+</body>
+
+</html>

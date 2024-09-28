@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap"
+            rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
+            rel="stylesheet" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer" />
+        <link rel="stylesheet" type="text/css" href="gallery.css" />
+        <title>Gallery</title>
+    </head>
+    <body>
+        <div class="head">
+            <h1>Black and White</h1>
+        </div>
+
+        <nav class="navbar9">
+            <ul>
+                <li><a href="wildlife.html">Wildlife</a></li>
+                <li><a href="landscape.html">Landscape</a></li>
+                <li><a href="stphoto.html">S.T Photography</a></li>
+                <li><a href="bw.html">B & W</a></li>
+                <li><a href="wedding.html">Wedding</a></li>
+                <li class="log"><a href="../login.html">Log in</a></li>
+                <li class="sign"><a href="../signup.html">Sign up</a></li>
+            </ul>
+        </nav>
+
+        <div class="container5">
+            <div class="gallery" id="image-container">
+                <!-- Images will be dynamically added here using JavaScript -->
+            </div>
+        </div>
+
+        <footer class="ft3">
+            <div class="footer-container2">
+                <div class="footer-content2">
+                    <div class="texts">
+                        <h3>Lismore's Lens</h3>
+
+                        <p>Copyright © 2023 Designed by Azgoen. All rights
+                            reserved.</p>
+                    </div>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            // Fetch and display images
+            fetch('../AdminGallery/SQL/bwimages.php')  // Make sure this URL is correct
+                .then(response => response.json())
+                .then(data => {
+                    const imageContainer = document.getElementById('image-container');
+        
+                    data.forEach(image => {
+                        const imageHTML = `
+                            <div class="gallery-item">
+                                <img src="${image.filepath}" alt="${image.description}" />
+                            </div>
+                        `;
+        
+                        imageContainer.innerHTML += imageHTML;
+                    });
+                })
+                .catch(error => console.error('Error fetching images:', error));
+        </script>
+
+    </body>
+</html>

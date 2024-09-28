@@ -1,0 +1,324 @@
+.pricingbody {
+  background-color: rgba(232, 250, 232, 0.874);
+  background-image: url(./Images/green.webp);
+  background-size: cover;
+  background-position: center;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.navbar5 {
+  position: sticky;
+  margin-right: 20px;
+  width: 100%;
+  list-style-type: none;
+  padding-left: 0;
+  background-color: #ffffff00;
+  font-family: poppins, sans-serif;
+  font-size: 12px;
+  text-align: center;
+  z-index: 1;
+}
+
+.navbar5 li {
+  transition: 0.3s;
+  display: inline-block;
+}
+
+.navbar5 li a {
+  display: flex;
+  color: #000000;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+.navbar5 li:hover {
+  transition: 0.5s;
+  transform: scale(0.9);
+}
+
+.navbar5 li.sign a,
+.navbar5 li.log a {
+  color: rgb(255, 255, 255);
+  /* Change the color to black for the "Login" and "Sign" links */
+}
+
+.navbar5 li.sign,
+.navbar5 li.log {
+  right: 10px;
+  top: 20px;
+  margin-left: 20px;
+  background-color: #000000;
+  font-size: 10px;
+  text-transform: lowercase;
+  font-family: comfortaa, sans-serif;
+  letter-spacing: 0.5px;
+  border-radius: 100px;
+}
+
+.navbar3 {
+  position: sticky;
+  margin-right: 20px;
+  width: 100%;
+  list-style-type: none;
+  padding-left: 0;
+  background-color: #ffffff00;
+  font-family: poppins, sans-serif;
+  font-size: 12px;
+  text-align: center;
+  z-index: 1;
+}
+
+.navbar3 li {
+  transition: 0.3s;
+  display: inline-block;
+}
+
+.navbar3 li a {
+  display: flex;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+.navbar3 li:hover {
+  transition: 0.5s;
+  transform: scale(0.9);
+}
+
+.navbar3 li.sign a,
+.navbar3 li.log a {
+  color: black;
+  /* Change the color to black for the "Login" and "Sign" links */
+}
+
+.navbar3 li.sign,
+.navbar3 li.log {
+  right: 10px;
+  top: 20px;
+  margin-left: 20px;
+  background-color: #ffffff;
+  font-size: 10px;
+  text-transform: lowercase;
+  font-family: comfortaa, sans-serif;
+  letter-spacing: 0.5px;
+  border-radius: 100px;
+}
+
+
+.pricehead {
+  color: #ffffff;
+  padding-top: 20px;
+  font-size: 20px;
+  letter-spacing: 3px;
+  font-family: Comfortaa, sans-serif;
+  text-transform: lowercase;
+  text-align: center;
+  margin-left: 30px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* Center align the text horizontally */
+}
+
+.ft3 {
+  margin-top: 100px;
+  background-color: #283c30;
+  color: #ffffff;
+  padding: 2px;
+  text-align: center;
+  width: 100%;
+  z-index: -1;
+}
+
+.container5 {
+  margin: 40px;
+  padding: 40px 40px 30px 40px;
+  margin-top: 80px;
+  margin-bottom: 50px;
+  width: calc(100% - 80px);
+  max-width: 800px;
+  background-color: #ffffffde;
+  border-radius: 10px;
+  box-sizing: border-box;
+  transition: width 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  /* Allow flex items to wrap to the next line */
+}
+
+.container5 p {
+  color: #ffffffcd;
+  font-size: 16px;
+  /* Increase the font size */
+  letter-spacing: 1px;
+  text-align: center;
+  /* Center align the description */
+  font-family: poppins, sans-serif;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0 20px;
+  flex: 1 1 100%;
+  /* Allow flex items to grow and occupy full width */
+}
+
+.container5 form {
+  background-color: #ffffffde;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container5 form label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #333333;
+  font-family: poppins, sans-serif;
+}
+
+.container5 form input,
+.container5 form textarea {
+  outline-color: #0b4c09;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  font-family: poppins, sans-serif;
+}
+
+.container5 form button {
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  background-color: #106f0d;
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: poppins, sans-serif;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.container5 form button:hover {
+  background-color: #0b4c09;
+  transition: 0.3s;
+}
+
+/*Enquiry*/
+
+.enqhead {
+  color: #000000;
+  padding-top: 20px;
+  font-size: 20px;
+  letter-spacing: 3px;
+  font-family: Comfortaa, sans-serif;
+  text-transform: lowercase;
+  text-align: center;
+  margin-left: 30px;
+  margin-bottom: 40px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* Center align the text horizontally */
+}
+
+.enqbody {
+  background-color: #ffffff;
+  background-image: radial-gradient(#000000 0.5px, transparent 0.5px),
+    radial-gradient(#000000 0.5px, #ffffff 0.5px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Style for enquiries container */
+#enquiries-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Style for individual enquiry */
+.enquiry {
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  margin: 15px 0;
+  padding: 15px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  width: 500px; /* Set max width */
+  height: 600px; /* Set height */
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  position: relative; /* Added to set positioning context for delete button */
+}
+
+.enquiry h2 {
+  text-transform: lowercase;
+  font-family: "Comfortaa", sans-serif;
+  font-size: 18px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  color: #000000;
+}
+
+.enquiry p {
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  margin-left: 10px;
+  margin-top: 10px;
+  color: #242424;
+}
+
+/* Horizontal line style */
+hr {
+  border: 0;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 15px 0;
+}
+
+/* Style for delete button */
+.delete-btn {
+  scale: 0.9;
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-family: poppins, sans-serif;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 100px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+

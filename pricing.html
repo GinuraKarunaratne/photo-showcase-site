@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
+    rel="stylesheet"
+  />
+  <title>Pricing</title>
+</head>
+<body class="pricingbody">
+  <nav class="navbar3">
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="enquiry.html">Enquiry</a></li>
+      <li class="log"><a href="login.html">Log in</a></li>
+      <li class="sign"><a href="signup.html">Sign up</a></li>
+    </ul>
+  </nav>
+
+  <br />
+
+  <div class="pricehead">
+    <h1>Deals and Steals</h1>
+  </div>
+
+  <div class="container5" id="pricing-container">
+    <!-- Pricing packages will be populated here -->
+  </div>
+
+  <footer class="ft">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="texts">
+          <h3>Lismore's Lens</h3>
+
+          <p>Copyright © 2023 Designed by Azgoen. All rights reserved.</p>
+        </div>
+      </div>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-pinterest"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    fetch('SQL/getpricing.php')
+      .then(response => response.json())
+      .then(data => {
+        const pricingContainer = document.getElementById('pricing-container');
+
+        data.forEach(package => {
+          const packageHTML = `
+            <div class="pricing-package">
+              <h2>${package.name}</h2>
+              <p class="price">$${package.price}</p>
+              <p class="description">${package.subname}</p>
+              <ul class="features">
+                ${package.features.split('\n').map(feature => `<li>${feature}</li>`).join('')}
+              </ul>
+              <a href="plan.html" class="btn">Choose Plan</a>
+            </div>
+          `;
+
+          pricingContainer.innerHTML += packageHTML;
+        });
+      })
+      .catch(error => console.error('Error fetching pricing data:', error));
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="admin.css" />
+  <title>Admin Pricing</title>
+</head>
+
+<body class="pricingbody">
+  <nav class="navbar3">
+    <ul>
+      <li><a href="adminpricing.html">Pricing</a></li>
+      <li><a href="admingallery.html">Gallery</a></li>
+      <li><a href="adminenquiries.html">Enquiries</a></li>
+      <li class="log"><a href="home.html">Client view</a></li>
+    </ul>
+  </nav>
+
+  <br/>
+
+  <div class="pricehead">
+    <h1>Pricing</h1>
+  </div>
+
+  <div class="container5">
+    <form id="pricing-form" method="post" action="SQL/adminpricing.php">
+      <div class="form-column">
+        <label for="package-id">Package ID:</label>
+        <input type="number" id="package-id" name="id" />
+        <label for="package-name">Package Name:</label>
+        <input type="text" id="package-name" name="name" />
+        <label for="package-price">Package Price:</label>
+        <input type="number" id="package-price" name="price" />
+      </div>
+      <div class="form-column">
+        <label for="package-subname">Package Subname:</label>
+        <input type="text" id="package-subname" name="subname" />
+        <label for="package-features">Package Features (Separate with newline):</label>
+        <textarea id="package-features" name="features"></textarea>
+      </div>
+      <div class="button-container">
+        <button type="submit" name="action" value="add">Add Package</button>
+        <button type="submit" name="action" value="update">
+          Update Package
+        </button>
+        <button type="submit" name="action" value="delete">
+          Delete Package
+        </button>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>

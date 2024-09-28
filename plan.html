@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet" />
+    <title>Plan</title>
+</head>
+
+<script>
+    const splashForm = document.getElementById('splash-form');
+    const splashContent = document.querySelector('.splash-content');
+
+    splashForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        try {
+            const formData = new FormData(splashForm);
+            const response = await fetch('SQL/pricing.php', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                splashContent.innerHTML = `<p>${data.message}</p>`;
+            } else {
+                splashContent.innerHTML = `<p>${data.message}</p>`;
+            }
+        } catch (error) {
+            splashContent.innerHTML = '<p>An error occurred. Please try again later.</p>';
+        }
+    });
+</script>
+
+
+<body class="pricingbody">
+
+    <div class="container5">
+        <div id="splash-screen" class="splash">
+            <div class="splash-content">
+                <a href="pricing.html" id="close-splash" class="close-btn">Close</a>
+                <h2>Enter your information</h2>
+
+                <form id="splash-form" method="post" action="SQL/pricing.php">
+                    <input type="text" id="first-name" name="first-name" placeholder="First Name" required />
+                    <input type="text" id="last-name" name="last-name" placeholder="Last Name" required />
+                    <input type="email" id="email" name="email" placeholder="Email" required />
+                    <input type="number" id="nic-number" name="nic-number" placeholder="NIC Number" required />
+                    <input type="tel" id="contact-num" name="contact-num" placeholder="Contact Number" required />
+                    <select id="event-type" name="event-type" required>
+                        <option value selected disabled>Select Event Type</option>
+                        <option value="wedding">Wedding</option>
+                        <option value="portrait">Portrait</option>
+                        <option value="special-event">Special Event</option>
+                    </select>
+                    <button type="submit">Book</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
